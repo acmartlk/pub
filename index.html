@@ -59,7 +59,7 @@
       <section id="about" class="section section--about">
         <div class="container grid grid--2">
           <div class="about-media reveal">
-            <img src="https://images.unsplash.com/photo-1541976076758-347942db1973?q=80&w=1200&auto=format&fit=crop" alt="Bar counter with copper fixtures" />
+            <img src="assets/image/bar-counter.png" alt="Bar counter with copper fixtures" />
           </div>
           <div class="about-copy reveal">
             <h2 class="h1">Our Story</h2>
@@ -130,27 +130,34 @@
           <div class="slider" aria-label="Upcoming events">
             <button class="slider-btn prev" aria-label="Previous event">&#10094;</button>
             <div class="slides">
-              <article class="slide is-active">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop" alt="Jazz trio on stage" />
-                <div class="slide-copy">
-                  <h3>Thursday Jazz Sessions</h3>
-                  <p>Local trio, 8–10 PM. No cover.</p>
-                </div>
-              </article>
-              <article class="slide">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop" alt="Whisky tasting" />
-                <div class="slide-copy">
-                  <h3>Whisky Flight Fridays</h3>
-                  <p>Guided tasting, 7 PM. Limited seats.</p>
-                </div>
-              </article>
-              <article class="slide">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop" alt="DJ night" />
-                <div class="slide-copy">
-                  <h3>Saturday Groove Night</h3>
-                  <p>Guest DJ, 9 PM till late.</p>
-                </div>
-              </article>
+
+
+<article class="slide is-active">
+  <img src="assets/image/jazz.png" alt="Jazz trio on stage" />
+  <div class="slide-copy">
+    <h3>Thursday Jazz Sessions</h3>
+    <p>Local trio, 8–10 PM. No cover.</p>
+  </div>
+</article>
+
+<article class="slide">
+  <img src="assets/image/whisky.png" alt="Whisky tasting" />
+  <div class="slide-copy">
+    <h3>Whisky Flight Fridays</h3>
+    <p>Guided tasting, 7 PM. Limited seats.</p>
+  </div>
+</article>
+
+<article class="slide">
+  <img src="assets/image/dj.png" alt="DJ night" />
+  <div class="slide-copy">
+    <h3>Saturday Groove Night</h3>
+    <p>Guest DJ, 9 PM till late.</p>
+  </div>
+</article>
+
+
+
             </div>
             <button class="slider-btn next" aria-label="Next event">&#10095;</button>
           </div>
@@ -366,15 +373,25 @@
           revealElements.forEach(el => el.classList.add('is-visible'));
         }
 
+
+
         // Slider logic
         let currentIndex = 0;
-        function updateSlider(index) {
-          if (!slideContainer || !slides.length) return;
-          currentIndex = (index + slides.length) % slides.length;
-          const offset = -currentIndex * 100;
-          slideContainer.style.transform = `translateX(${offset}%)`;
-          slides.forEach((s, i) => s.classList.toggle('is-active', i === currentIndex));
-        }
+
+
+function updateSlider(index) {
+  currentIndex = (index + slides.length) % slides.length; // wrap around
+  slides.forEach((s, i) => {
+    if (i === currentIndex) {
+      s.classList.add('is-active');  // show current slide
+    } else {
+      s.classList.remove('is-active'); // hide others
+    }
+  });
+}
+
+
+
         if (prevBtn && nextBtn) {
           prevBtn.addEventListener('click', () => updateSlider(currentIndex - 1));
           nextBtn.addEventListener('click', () => updateSlider(currentIndex + 1));
@@ -479,4 +496,3 @@
     </script>
   </body>
 </html>
-
